@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CSCources.Models;
 using CSCources.ViewModels;
+using CSCources.DAL;
 
 namespace CSCources.Controllers
 {
