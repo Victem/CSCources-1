@@ -18,6 +18,9 @@ namespace CSCources.Models
 
         public string Description { get; set; }
 
+        /// <summary>
+        /// в какой дирректории хранится картинка
+        /// </summary>
         public FileDirectory Directory { get; set; }
 
         public string Name

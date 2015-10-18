@@ -20,10 +20,19 @@ namespace CSCources.Models
 
         public Sex Sex { get; set; }
 
+        /// <summary>
+        /// текст о пользователе, пользователь его сам заполняет
+        /// </summary>
         public string UserInformation { get; set; }
 
+        /// <summary>
+        /// интересы пользователя, пользователь заполняет их сам
+        /// </summary>
         public string Interests { get; set; }
 
+        /// <summary>
+        /// заметки администратора о пользователе
+        /// </summary>
         public string AdminNotes { get; set; }
 
         //public UInt16 Telefon { get; set; }
