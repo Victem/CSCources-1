@@ -16,7 +16,7 @@ namespace CSCources.Models
 
         public string LastName { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         public Sex Sex { get; set; }
 
