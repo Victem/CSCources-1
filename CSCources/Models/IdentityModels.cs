@@ -16,9 +16,9 @@ namespace CSCources.Models
 
         public string LastName { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
-        public Sex Sex { get; set; }
+        public Sex Sex { get; set; } = Sex.Unset;
 
         /// <summary>
         /// текст о пользователе, пользователь его сам заполняет
