@@ -39,7 +39,7 @@ namespace CSCources
             mail.IsBodyHtml = true;
             var credentials = new NetworkCredential(
                                                      "lobzan@mail.ru", //Данные для доступа к ящику эл. почты
-                                                     "20Ze;jSVlcfB" //Пароль для доступа к эл. почте
+                                                     "Password" //Пароль для доступа к эл. почте
                                                                     //Я использовал ConfigManager
                                                     );
 
