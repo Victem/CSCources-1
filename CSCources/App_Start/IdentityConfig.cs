@@ -38,11 +38,7 @@ namespace CSCources
             mail.Body = message.Body;
             mail.IsBodyHtml = true;
             var credentials = new NetworkCredential(
-<<<<<<< HEAD
                                                      "registry_confirmation@server.ru", //Данные для доступа к ящику эл. почты
-=======
-                                                     "lobzan@mail.ru", //Данные для доступа к ящику эл. почты
->>>>>>> origin/AndrewLobov
                                                      "Password" //Пароль для доступа к эл. почте
                                                                     //Я использовал ConfigManager
                                                     );
