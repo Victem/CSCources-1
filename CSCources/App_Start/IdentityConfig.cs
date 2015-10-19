@@ -31,7 +31,7 @@ namespace CSCources
             sendMessage.EnableSsl = true;
             sendMessage.UseDefaultCredentials = false;
             MailMessage mail = new MailMessage(
-                                                new MailAddress("lobzan@mail.ru", "CSharpCourses"), // Адрес посчтового воящика с которого будет отправлено письмо, и поле "От кого"
+                                                new MailAddress("registry_confirmation@server.ru", "CSharpCourses"), // Адрес посчтового воящика с которого будет отправлено письмо, и поле "От кого"
                                                 new MailAddress(message.Destination) //Адрес куда слать сообщение
                                                );
             mail.Subject = message.Subject;
