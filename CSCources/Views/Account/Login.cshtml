@@ -13,6 +13,8 @@
             {
                 @Html.AntiForgeryToken()
                 <h4>Используйте локальную учетную запись для входа.</h4>
+                <p>Для проверки используйте логины ниже, пароль "password"</p>
+                <p>loginadmin: admin@admin.ru, loginmoderator: moderator@moderator.ru, loginuser: user1@user.ru, loginteacher: teacher1@teacher.ru, loginbanned: banned1@banned.ru</p>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
