@@ -49,7 +49,7 @@ namespace CSCources.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Введите свой логин")]
+        [Display(Name = "Введите имя пользователя")]
         public string Login { get; set; }
 
         [Required]
@@ -64,7 +64,7 @@ namespace CSCources.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Введите свой логин")]
+        [Display(Name = "Введите имя пользователя")]
         public string Login { get; set; }
 
         [Required]
