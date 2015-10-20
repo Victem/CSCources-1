@@ -49,8 +49,9 @@ namespace CSCources.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Введите имя пользователя")]
-        public string Login { get; set; }
+        [Display(Name = "Адрес электронной почты")]
+        [EmailAddress]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,8 +65,9 @@ namespace CSCources.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Введите имя пользователя")]
-        public string Login { get; set; }
+        [EmailAddress]
+        [Display(Name = "Адрес электронной почты")]
+        public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
