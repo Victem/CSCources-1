@@ -42,7 +42,7 @@ namespace CSCources.DAL
                 Email = "admin@admin.ru",
                 EmailConfirmed = true,
                 UserInformation = "Администратор портала",
-                BirthDate = DateTime.Now
+                BirthDate = null
             };
 
             userManager.Create(admin, "password");
@@ -58,7 +58,7 @@ namespace CSCources.DAL
                 UserInformation = "Модератор портала",
                 Email = "moderator@moderator.ru",
                 EmailConfirmed = true,
-                BirthDate = DateTime.Now
+                BirthDate = null
             };
 
             userManager.Create(moderator, "password");
@@ -132,7 +132,7 @@ namespace CSCources.DAL
 
             for (int i = 0; i < 5; i++)
             {
-                Thread threads = new Thread()
+                Thread thread = new Thread()
                 {
                     Id = i,
                     Title = "Новости" + i,
@@ -140,23 +140,51 @@ namespace CSCources.DAL
                     PublishDate = DateTime.Now
                 };
 
-                context.Threads.Add(threads);
-            }
 
                 // инициализируем сообщения
                 List<Message> Messages = new List<Message>(); // создаем сообщения
-                for (int i = 0; i < 12; i++)
+                for (int j = 0; j < 12; j++)
                 {
                     Message message = new Message()
                     {
                         PublishDate = DateTime.Now,
                         EditDate = DateTime.Now,
-                        Text = GenerateSeedText(i),
-                        User = admin
+                        Text = GenerateSeedText(j),
+                        User = admin,
+                        Thread = thread,
+                        IsTop = true
                     };
+
+                    for(int k=0;k<15;k++)
+                    {
+                        Message reply = new Message()
+                        {
+                            PublishDate = DateTime.Now,
+                            EditDate = DateTime.Now,
+                            Text = GenerateSeedText(j),
+                            User = admin,
+                            Thread = thread,
+                            // устанавливаем к какому родителю относится сообщение, для сообщений 
+                            // 2ого уровня родитель равен сообщению ветки
+                            // а если более глубокое сообщение, то Parent это то сообщение к которому идет ответ
+                            // а TopMessage это ветка
+                            ParentMessage = message,
+                            // устанавливаем к какой ветке относится сообщение
+                            TopMessage = message,
+                            IsTop = false
+                        };
+
+                        context.Messages.Add(reply);
+
+                    }
 
                     context.Messages.Add(message);
                 }
+
+                context.Threads.Add(thread);
+            }
+
+                
 
                 context.SaveChanges();
             }
