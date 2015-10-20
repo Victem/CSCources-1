@@ -35,7 +35,7 @@ namespace CSCources.DAL
             //Создаем пользователей
             ApplicationUser admin = new ApplicationUser() // создаем админа
             {
-                UserName = "Admin",
+                UserName = "admin@admin.ru",
                 Name = "Admin",
                 LastName = "Admin",
                 Id = "Admin",
@@ -50,7 +50,7 @@ namespace CSCources.DAL
 
             ApplicationUser moderator = new ApplicationUser() // создаем модератора
             {
-                UserName = "Moderator",
+                UserName = "moderator@moderator.ru",
                 Name = "Moderator",
                 LastName = "Moderator",
                 Id = "Moderator",
@@ -75,7 +75,7 @@ namespace CSCources.DAL
                 else tMale = Sex.Male;
                 ApplicationUser user1 = new ApplicationUser() // обычные пользователи
                 {
-                    UserName = "User" + i,
+                    UserName = "User" + i+"@user.ru",
                     Name = "User" + i,
                     LastName = "User" + i,
                     Id = "User" + i,
@@ -92,7 +92,7 @@ namespace CSCources.DAL
 
                 ApplicationUser userbanned = new ApplicationUser() // забаненные пользователи
                 {
-                    UserName = "Userban" + i,
+                    UserName = "Userban" + i+"@userbanned.ru",
                     Name = "Userban" + i,
                     LastName = "Userban" + i,
                     Id = "Userban" + i,
@@ -109,7 +109,7 @@ namespace CSCources.DAL
 
                 ApplicationUser teacher1 = new ApplicationUser() // учителя
                 {
-                    UserName = "Teacher" + i,
+                    UserName = "Teacher" + i+ "@teacher.ru",
                     Name = "Teacher" + i,
                     LastName = "Teacher" + i,
                     Id = "Teacher" + i,
