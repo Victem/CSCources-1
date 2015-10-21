@@ -248,6 +248,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\_Settings.cshtml" />
     <Content Include="Views\Admin\_Settings_delRole.cshtml" />
+    <Content Include="Views\Admin\_Settings_saveRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

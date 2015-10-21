@@ -46,9 +46,12 @@ namespace CSCources.DAL
             };
 
             userManager.Create(admin, "password");
+
             userManager.AddToRole(admin.Id, "admin");
             userManager.AddToRole(admin.Id, "teacher");
             userManager.AddToRole(admin.Id, "moderator");
+            userManager.AddToRole(admin.Id, "user");
+            userManager.AddToRole(admin.Id, "banned");
 
 
             ApplicationUser moderator = new ApplicationUser() // создаем модератора
@@ -65,7 +68,12 @@ namespace CSCources.DAL
             };
 
             userManager.Create(moderator, "password");
+
             userManager.AddToRole(moderator.Id, "moderator");
+            userManager.AddToRole(moderator.Id, "admin");
+            userManager.AddToRole(moderator.Id, "teacher");
+            userManager.AddToRole(moderator.Id, "user");
+            userManager.AddToRole(moderator.Id, "banned");
 
 
             // создаем Users
@@ -91,7 +99,14 @@ namespace CSCources.DAL
                     Sex = tMale
                 };
                 userManager.Create(user1, "password");
+
                 userManager.AddToRole(user1.Id, "user");
+                userManager.AddToRole(user1.Id, "moderator");
+                userManager.AddToRole(user1.Id, "admin");
+                userManager.AddToRole(user1.Id, "teacher");
+                userManager.AddToRole(user1.Id, "banned");
+
+
 
                 ApplicationUser userbanned = new ApplicationUser() // забаненные пользователи
                 {
