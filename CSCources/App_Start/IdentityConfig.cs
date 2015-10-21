@@ -12,15 +12,45 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using CSCources.Models;
 using CSCources.DAL;
+using System.Net.Mail;
+using System.Net;
+using System.Configuration;
 
 namespace CSCources
 {
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
+            await ConfigConfirmMail(message);
+        }
+
+        private async Task ConfigConfirmMail(IdentityMessage message)
+        {
+            var sendMessage = new SmtpClient("smtp.mail.ru"); //Адрес SMTP сервера
+            sendMessage.EnableSsl = true;
+            sendMessage.UseDefaultCredentials = false;
+            MailMessage mail = new MailMessage(
+                                                new MailAddress("registry_confirmation@server.ru", "CSharpCourses"), // Адрес посчтового воящика с которого будет отправлено письмо, и поле "От кого"
+                                                new MailAddress(message.Destination) //Адрес куда слать сообщение
+                                               );
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+            mail.IsBodyHtml = true;
+            var credentials = new NetworkCredential(
+                                                     "registry_confirmation@server.ru", //Данные для доступа к ящику эл. почты
+                                                     "Password" //Пароль для доступа к эл. почте
+                                                                    //Я использовал ConfigManager
+                                                    );
+
+            sendMessage.Credentials = credentials;
+
+            await sendMessage.SendMailAsync(mail);
             // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
             return Task.FromResult(0);
+            await Task.FromResult(0);
+            
         }
     }
 
@@ -41,6 +71,10 @@ namespace CSCources
         {
         }
 
+        public override Task<IdentityResult> CreateAsync(ApplicationUser user, string password)
+        {
+            return base.CreateAsync(user, password);
+        }
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
