@@ -5,33 +5,37 @@
 
 <h2>Панель администрирования</h2>
 
+<div class="container">
 
-<div class="row">
-    <div class="col-md-3">
-        @*
-        @using (Ajax.BeginForm("_Settings", "Admin", new { id = @ViewBag.usr1.Id}, new AjaxOptions() { UpdateTargetId = "settings" }))
-        {
-            <input type="submit" value=@ViewBag.usr1.Email class="btn btn-default btn-block" />
-        }
-        *@
-        
-        @foreach (var item in ViewBag.usr)
-        {
-            using (Ajax.BeginForm("_Settings", "Admin", new { id = @item.Id}, new AjaxOptions() { UpdateTargetId = "settings" }))
+    <div class="row">
+
+        <div class="col-md-3">
+            @*
+                @using (Ajax.BeginForm("_Settings", "Admin", new { id = @ViewBag.usr1.Id}, new AjaxOptions() { UpdateTargetId = "settings" }))
+                {
+                    <input type="submit" value=@ViewBag.usr1.Email class="btn btn-default btn-block" />
+                }
+            *@
+
+            @foreach (var item in ViewBag.usr)
             {
-                <input type="submit" value=@item.Email class="btn btn-default btn-block" />
+                using (Ajax.BeginForm("_Settings", "Admin", new { id = @item.Id }, new AjaxOptions() { UpdateTargetId = "settings" }))
+                {
+                    <input type="submit" value=@item.Email class="btn btn-default btn-block" />
+                }
             }
-        }
+
+        </div>
+
+        <div class="col-md-7" id="settings">
+            <br />
+            <br />
+        </div>
+
+        <div class="col-md-2">
+        
+        </div>
 
     </div>
-    
-    <div class="col-md-7" id="settings">
-        <br />
-        <br />
 
-
-    </div>
-
-    <div class="col-md-2"></div>
 </div>
-

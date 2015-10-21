@@ -1,12 +1,4 @@
 ﻿
-
-@*@foreach (var item in ViewBag.roles)
-{
-    @item
-    <br />
-}
-*@
-
 @foreach (var item in ViewBag.roles)
 {
     using (Ajax.BeginForm("_Settings_delRole", "Admin", new { id = @TempData["user_Id"], role = item }, new AjaxOptions() { UpdateTargetId = "settings" }))
@@ -14,3 +6,4 @@
         <input type="submit" value=@item class="btn btn-default btn-block" />
     }
 }
+

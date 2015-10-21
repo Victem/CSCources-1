@@ -28,11 +28,35 @@ namespace CSCources.Controllers
 
         public PartialViewResult _Settings(string id)
         {
+            if (TempData["user_Id"] == null)
+            {
+                //TempData["user_Id"] = usr.Id;
+                TempData["user_Id"] = id;
+            }
+
             IList<string> roles = new List<string> { "У пользователя нет ролей" };
             ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            ApplicationUser usr = userManager.FindById(id);
+            ApplicationUser usr = userManager.FindById(TempData["user_Id"].ToString());
+
             if (usr != null)
                 roles = userManager.GetRoles(usr.Id);
+
+            ViewBag.roles = roles;
+            
+
+            return PartialView();
+        }
+
+        public PartialViewResult _Settings_delRole(string id, string role)
+        {
+
+            IList<string> roles = new List<string> { "У пользователя нет ролей" };
+            ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            
+            //Удаляем роль
+            userManager.RemoveFromRole(id, role);
+
+            roles = userManager.GetRoles(id);
 
             ViewBag.roles = roles;
 

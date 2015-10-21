@@ -47,6 +47,9 @@ namespace CSCources.DAL
 
             userManager.Create(admin, "password");
             userManager.AddToRole(admin.Id, "admin");
+            userManager.AddToRole(admin.Id, "teacher");
+            userManager.AddToRole(admin.Id, "moderator");
+
 
             ApplicationUser moderator = new ApplicationUser() // создаем модератора
             {
