@@ -18,7 +18,7 @@ namespace CSCources.Models
 
         public DateTime? BirthDate { get; set; }
 
-        public Sex Sex { get; set; }
+        public Sex Sex { get; set; } = Sex.Unset;
 
         /// <summary>
         /// текст о пользователе, пользователь его сам заполняет
