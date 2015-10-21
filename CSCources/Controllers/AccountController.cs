@@ -173,6 +173,18 @@ namespace CSCources.Controllers
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
         }
+        //
+        //Get: /Account/Edit
+        [Authorize]
+        public ActionResult Edit (string userId)
+        {
+            //if (userId == null)
+            //{
+            //    return View("Error");
+            //}
+            var user = UserManager.FindById(userId);
+            return View(user);
+        }
 
         //
         // GET: /Account/ConfirmEmail
