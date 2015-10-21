@@ -1,9 +1,19 @@
 ﻿
+<strong>@TempData["user_Email"] </strong>
+
+<hr />
+
 @foreach (var item in ViewBag.roles)
 {
-    using (Ajax.BeginForm("_Settings_delRole", "Admin", new { id = @TempData["user_Id"], role = item }, new AjaxOptions() { UpdateTargetId = "settings" }))
+    using (Ajax.BeginForm("_Settings_delRole", "Admin", new { id = @TempData["user_Id"], role = item, user_Email = @TempData["user_Email"] }, new AjaxOptions() { UpdateTargetId = "settings" }))
     {
-        <input type="submit" value=@item class="btn btn-default btn-block" />
+        <input type="submit" value="Удалить роль" class="btn btn-danger" />
+        <strong>@item</strong>
     }
+    <br />
+
 }
+
+<hr />
+
 

@@ -42,12 +42,12 @@ namespace CSCources.Controllers
                 roles = userManager.GetRoles(usr.Id);
 
             ViewBag.roles = roles;
-            
+            TempData["user_Email"] = usr.Email;
 
             return PartialView();
         }
 
-        public PartialViewResult _Settings_delRole(string id, string role)
+        public PartialViewResult _Settings_delRole(string id, string role, string user_Email)
         {
 
             IList<string> roles = new List<string> { "У пользователя нет ролей" };
@@ -59,6 +59,7 @@ namespace CSCources.Controllers
             roles = userManager.GetRoles(id);
 
             ViewBag.roles = roles;
+            TempData["user_Email"] = user_Email;
 
             return PartialView();
         }
