@@ -3,7 +3,6 @@
 
 <hr />
 
-
 @foreach (var item in ViewBag.roles)
 {
     using (Ajax.BeginForm("_Settings_delRole", "Admin", new { id = @TempData["user_Id"], role = item, user_Email=@TempData["user_Email"] }, new AjaxOptions() { UpdateTargetId = "settings" }))

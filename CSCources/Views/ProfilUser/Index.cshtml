@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Профиль";
+}
+
+<h2>Профиль</h2>
+
+<br />
+
+@foreach (var item in ViewBag.Usrs)
+{
+    <div>
+        <a class="openDialog" data-dialog-id="infoDialog" data-dialog-title="Профиль"
+           href="ProfilUser/_GetUsrs/@item.Id">
+            
+            @item.Name
+
+        </a>
+    </div>
+}
+
+
+
+<br />
+<br />
