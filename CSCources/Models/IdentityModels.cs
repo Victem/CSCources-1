@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CSCources.Models
 {
@@ -12,12 +13,16 @@ namespace CSCources.Models
 
     public class ApplicationUser : IdentityUser
     {
+        [Display(Name = "Имя")]
         public string Name { get; set; }
 
+        [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 
+        [Display(Name = "Дата рождения")]
         public DateTime? BirthDate { get; set; }
 
+        [Display(Name = "Пол")]
         public Sex Sex { get; set; } = Sex.Unset;
 
         /// <summary>
@@ -28,6 +33,7 @@ namespace CSCources.Models
         /// <summary>
         /// интересы пользователя, пользователь заполняет их сам
         /// </summary>
+        [Display(Name = "Интересы")]
         public string Interests { get; set; }
 
         /// <summary>

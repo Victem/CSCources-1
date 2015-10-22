@@ -21,9 +21,21 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Interests, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Interests, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
             @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", id="datetimepicker4" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sex, new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DropDownListFor(m => m.Sex, new SelectList ( new[] { "Female", "Male" } ), new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
