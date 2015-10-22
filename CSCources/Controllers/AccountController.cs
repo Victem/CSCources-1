@@ -176,18 +176,50 @@ namespace CSCources.Controllers
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
         }
+
+
+
         //
         //Get: /Account/Edit
         [Authorize]
-        public ActionResult Edit (string userId)
+        public async Task<ActionResult> Edit()
         {
-            //if (userId == null)
-            //{
-            //    return View("Error");
-            //}
-            var user = UserManager.FindById(userId);
+            ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             return View(user);
         }
+
+
+        //Post: /Account/Edit
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> Edit(ApplicationUser model)
+        {
+            ApplicationUser user = await UserManager.FindByIdAsync(model.Id);
+            if (user != null)
+            {
+                user.Name = model.Name;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                IdentityResult result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    //return RedirectToAction("Index", "Home");
+                    return View(model);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Что-то пошло не так");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Пользователь не найден");
+            }
+
+            return View(model);
+        }
+
+
 
         //
         // GET: /Account/ConfirmEmail

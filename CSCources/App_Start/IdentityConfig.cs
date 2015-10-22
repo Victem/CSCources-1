@@ -20,7 +20,6 @@ namespace CSCources
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
         public async Task SendAsync(IdentityMessage message)
         {
             await ConfigConfirmMail(message);
@@ -48,7 +47,6 @@ namespace CSCources
 
             await sendMessage.SendMailAsync(mail);
             // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
-            return Task.FromResult(0);
             await Task.FromResult(0);
             
         }
