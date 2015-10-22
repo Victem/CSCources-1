@@ -200,6 +200,7 @@ namespace CSCources.Controllers
                 user.Name = model.Name;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
+                user.BirthDate = model.BirthDate;
                 IdentityResult result = await UserManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
