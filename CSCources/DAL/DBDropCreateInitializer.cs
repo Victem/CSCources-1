@@ -86,6 +86,7 @@ namespace CSCources.DAL
                     Email = "user"+i+"@user.ru",
                     EmailConfirmed = true,
                     Sex = tMale
+
                 };
                 userManager.Create(user1, "password");
                 userManager.AddToRole(user1.Id, "user");

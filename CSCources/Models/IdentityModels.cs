@@ -41,6 +41,10 @@ namespace CSCources.Models
         /// </summary>
         public string AdminNotes { get; set; }
 
+        public int? FileId { get; set; }
+
+        public virtual File Avatar { get; set; }
+
         //public UInt16 Telefon { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

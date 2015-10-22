@@ -11,12 +11,14 @@ using Microsoft.Owin.Security;
 using CSCources.Models;
 using CSCources.ViewModels;
 using CSCources.DAL;
+using System.IO;
 
 namespace CSCources.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -192,7 +194,7 @@ namespace CSCources.Controllers
         //Post: /Account/Edit
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> Edit(ApplicationUser model)
+        public async Task<ActionResult> Edit(ApplicationUser model, HttpPostedFileBase avatar)
         {
             ApplicationUser user = await UserManager.FindByIdAsync(model.Id);
             if (user != null)
@@ -203,6 +205,15 @@ namespace CSCources.Controllers
                 user.BirthDate = model.BirthDate;
                 user.Sex = model.Sex;
                 user.Interests = model.Interests;
+                if (avatar != null)
+                {
+                    CSCources.Models.File file = new CSCources.Models.File();
+                    file.Extension = Path.GetExtension(avatar.FileName).TrimStart(new char[] {'.'});
+                    db.Files.Add(file);
+                    db.SaveChanges();
+                    avatar.SaveAs(Server.MapPath("~/Images/Avatars/") + file.Name);
+                    user.Avatar = file;
+                }
                 IdentityResult result = await UserManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {

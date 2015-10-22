@@ -3,7 +3,7 @@
     ViewBag.Title = "Обновление профиля";
 }
 <h2>Обновление профиля</h2>
-@using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data"}))
 {
 
     @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -38,6 +38,20 @@
             @Html.DropDownListFor(m => m.Sex, new SelectList ( new[] { "Female", "Male" } ), new { @class = "form-control" })
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+           <input type="file" class="btn btn-default" name="avatar"/>
+        </div>
+        <div class="col-md-offset-2 col-md-2">
+            @if (Model.FileId != null)
+            {
+                <img src="~/Images/Avatars/@Model.Avatar.Name" class="class="col-md-offset-2 col-md-2" />
+            }
+        </div>
+        
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Сохранить" />
