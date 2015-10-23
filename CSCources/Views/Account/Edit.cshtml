@@ -44,9 +44,10 @@
            <input type="file" class="btn btn-default" name="avatar"/>
         </div>
         <div class="col-md-offset-2 col-md-2">
-            @if (Model.FileId != null)
+            @if (Model.AvatarId != null)
             {
-                <img src="~/Images/Avatars/@Model.Avatar.Name" class="class="col-md-offset-2 col-md-2" />
+                <img src="@Model.Avatar.FileVirtualPath" class="class="col-md-offset-2 col-md-2" />
+                <img src="../@Model.Avatar.FileVirtualPath" class="class=" col-md-offset-2 col-md-2" />
             }
         </div>
         

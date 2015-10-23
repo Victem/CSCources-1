@@ -12,6 +12,7 @@ using CSCources.Models;
 using CSCources.ViewModels;
 using CSCources.DAL;
 using System.IO;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CSCources.Controllers
 {
@@ -48,7 +49,8 @@ namespace CSCources.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                //return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
@@ -194,9 +196,9 @@ namespace CSCources.Controllers
         //Post: /Account/Edit
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> Edit(ApplicationUser model, HttpPostedFileBase avatar)
+        public ActionResult Edit(ApplicationUser model, HttpPostedFileBase avatar)
         {
-            ApplicationUser user = await UserManager.FindByIdAsync(model.Id);
+            ApplicationUser user = UserManager.FindById(model.Id);
             if (user != null)
             {
                 user.Name = model.Name;
@@ -204,26 +206,32 @@ namespace CSCources.Controllers
                 user.Email = model.Email;
                 user.BirthDate = model.BirthDate;
                 user.Sex = model.Sex;
+                
                 user.Interests = model.Interests;
                 if (avatar != null)
                 {
                     CSCources.Models.File file = new CSCources.Models.File();
+                    file.Directory = FileDirectory.Avatar;
                     file.Extension = Path.GetExtension(avatar.FileName).TrimStart(new char[] {'.'});
                     db.Files.Add(file);
                     db.SaveChanges();
-                    avatar.SaveAs(Server.MapPath("~/Images/Avatars/") + file.Name);
+                    avatar.SaveAs(Server.MapPath(file.FileVirtualPath));
                     user.Avatar = file;
+                    //user.AvatarId = file.Id;
                 }
-                IdentityResult result = await UserManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    //return RedirectToAction("Index", "Home");
-                    return View(model);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Что-то пошло не так");
-                }
+                //  IdentityResult result = await UserManager.UpdateAsync(user);
+                //UserManager.Update(user);
+                db.SaveChanges();
+
+                //if (result.Succeeded)
+                //{
+                //    //return RedirectToAction("Index", "Home");
+                //    return View(model);
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Что-то пошло не так");
+                //}
             }
             else
             {

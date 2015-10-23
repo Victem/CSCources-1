@@ -41,7 +41,7 @@ namespace CSCources.Models
         /// </summary>
         public string AdminNotes { get; set; }
 
-        public int? FileId { get; set; }
+        public int? AvatarId { get; set; }
 
         public virtual File Avatar { get; set; }
 

@@ -35,7 +35,7 @@ namespace CSCources.Models
         {
             get
             {
-                return $"Images/{Directory}s/{Name}";
+                return $"~/Images/{Directory}s/{Name}";
             }
         }
 
