@@ -23,6 +23,8 @@ namespace CSCources.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+
+
         public AccountController()
         {
         }
@@ -49,7 +51,7 @@ namespace CSCources.Controllers
         {
             get
             {
-                return new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                return new ApplicationUserManager(new UserStore<ApplicationUser>(db));
                 //return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
@@ -238,7 +240,7 @@ namespace CSCources.Controllers
                 ModelState.AddModelError("", "Пользователь не найден");
             }
 
-            return View(model);
+            return View(user);
         }
 
 
