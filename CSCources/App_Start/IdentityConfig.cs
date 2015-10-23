@@ -27,20 +27,20 @@ namespace CSCources
 
         private async Task ConfigConfirmMail(IdentityMessage message)
         {
-            var sendMessage = new SmtpClient("smtp.mail.ru"); //Адрес SMTP сервера
+            var sendMessage = new SmtpClient("smtp.yandex.ru"); //Адрес SMTP сервера
             sendMessage.EnableSsl = true;
             sendMessage.UseDefaultCredentials = false;
             MailMessage mail = new MailMessage(
-                                                new MailAddress("registry_confirmation@server.ru", "CSharpCourses"), // Адрес посчтового воящика с которого будет отправлено письмо, и поле "От кого"
+                                                new MailAddress("cscources@yandex.ru", "CSharpCourses"), // Адрес посчтового воящика с которого будет отправлено письмо, и поле "От кого"
                                                 new MailAddress(message.Destination) //Адрес куда слать сообщение
                                                );
             mail.Subject = message.Subject;
             mail.Body = message.Body;
             mail.IsBodyHtml = true;
             var credentials = new NetworkCredential(
-                                                     "registry_confirmation@server.ru", //Данные для доступа к ящику эл. почты
-                                                     "Password" //Пароль для доступа к эл. почте
-                                                                    //Я использовал ConfigManager
+                                                     "cscources@yandex.ru", //Данные для доступа к ящику эл. почты
+                                                     "7YsujOhUpI" //Пароль для доступа к эл. почте
+                                                                  //Я использовал ConfigManager
                                                     );
 
             sendMessage.Credentials = credentials;
