@@ -37,6 +37,10 @@ namespace CSCources.Models
 
         //public UInt16 Telefon { get; set; }
 
+        public string Country { get; set; }
+
+        public string City { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
